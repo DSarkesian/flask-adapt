@@ -19,10 +19,10 @@ class Pet(db.Model):
     """pet"""
     __tablename__ = "pets"
 
-    id = db.column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.column(db.String, nullable=False)
-    species = db.column(db.String, nullable=False)
-    photo_url =db.column(db.String, nullable=False, default="")
-    age = db.column(db.String,nullable=False)
-    notes = db.column(db.String, nullable=True)
-    available = db.column(db.Boolean, nullable=false, default =True )
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String, nullable=False)
+    species = db.Column(db.String, nullable=False)
+    photo_url =db.Column(db.String, nullable=False, default="")
+    age = db.Column(db.String,nullable=False)
+    notes = db.Column(db.String, nullable=True)
+    available = db.Column(db.Boolean, nullable=false, default =True )

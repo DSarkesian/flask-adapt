@@ -28,7 +28,7 @@ toolbar = DebugToolbarExtension(app)
 def homepage():
     """renders homepage shows pets and availability"""
     pets = Pet.query.all()
-    return render_template('index.html',pets=pets)
+    return render_template('home.html',pets=pets)
 
 @app.route("/add", methods=["GET", "POST"])
 def add_snack():
@@ -36,18 +36,21 @@ def add_snack():
 
     form = AddPetForm()
 
-    if not form.validate_on_submit():
+    if form.validate_on_submit():
         name = form.name.data
         species = form.species.data
         photo_url = form.photo_url.data
         age = form.age.data
         notes = form.notes.data
         # do stuff with data/insert to db
+        pet = Pet(name, species, photo_url, age, notes)
+        db.session.add(pet)
+        db.session.commit()
 
-        flash(f"Added {name} at {price}")
+        # flash(f"Added {name} at {price}")
         return redirect("/add")
         #TODO: create flash message handling
 
     else:
         return render_template(
-            "_add_form.html", form=form)
+            "add.html", form=form)
