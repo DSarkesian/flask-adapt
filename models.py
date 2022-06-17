@@ -2,6 +2,7 @@
 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import PrimaryKeyConstraint, false
+from traitlets import default
 
 db = SQLAlchemy()
 
@@ -24,5 +25,6 @@ class Pet(db.Model):
     species = db.Column(db.String, nullable=False)
     photo_url =db.Column(db.String, nullable=False, default="")
     age = db.Column(db.String,nullable=False)
-    notes = db.Column(db.String, nullable=True)
-    available = db.Column(db.Boolean, nullable=false, default =True )
+    notes = db.Column(db.Text, nullable=False, default='')
+    available = db.Column(db.Boolean, nullable=false, default=True )
+
