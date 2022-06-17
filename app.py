@@ -43,12 +43,12 @@ def add_snack():
         age = form.age.data
         notes = form.notes.data
         # do stuff with data/insert to db
-        pet = Pet(name, species, photo_url, age, notes)
+        pet = Pet(name=name, species=species, photo_url=photo_url, age=age, notes=notes)
         db.session.add(pet)
         db.session.commit()
 
         # flash(f"Added {name} at {price}")
-        return redirect("/add")
+        return redirect("/")
         #TODO: create flash message handling
 
     else:

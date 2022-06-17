@@ -2,14 +2,15 @@
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, FloatField, TextAreaField
-from wtforms.validators import InputRequired, Optional, Email, URL
-
+from wtforms.validators import InputRequired, Optional, Email, URL, AnyOf
 class AddPetForm(FlaskForm):
     """Form for adding pets."""
 
     name = StringField("Pet Name")
-    species = StringField("Species")
+    species = StringField("Species",
+         validators= [InputRequired(), AnyOf(["dog","cat","porcupine"])])
     photo_url = StringField("Photo URL",
-                        validators=[Optional(), URL()])
-    age = StringField("Age")
+        validators=[Optional(), URL()])
+    age = StringField("Age",
+        validators= [InputRequired(), AnyOf(["baby", "young", "adult", "senior"])])
     notes = TextAreaField("Notes")

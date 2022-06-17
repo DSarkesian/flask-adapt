@@ -2,11 +2,16 @@
 <ul>
 {% for pet in pets %}
 <!--fix later-->
-<li><a href="/{{pet.id}}">{{pet.name}} {{pet.photo_url}} {{pet.available}}</a> </li>
+<div>
+  <div><img src ="{{pet.photo_url}}" height="150px" width="150px"></div>
+
+  <div><a href="/{{pet.id}}">{{pet.name}}  {% if pet.available %} <b>Available</b> {% endif %}</div>
+
+</a> </div>
 {% endfor %}
 </ul>
 
 <form action="/add">
-  <button>Add</button>
+  <button>Add a pet</button>
 </form>
 {% endblock %}
