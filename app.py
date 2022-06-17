@@ -1,10 +1,11 @@
 """Flask app for adopt app."""
 
-from flask import Flask, render_template
+from flask import Flask, render_template, flash, redirect
 
 from flask_debugtoolbar import DebugToolbarExtension
 
 from models import Pet, db, connect_db
+from forms import AddPetForm
 
 app = Flask(__name__)
 
@@ -28,3 +29,25 @@ def homepage():
     """renders homepage shows pets and availability"""
     pets = Pet.query.all()
     return render_template('index.html',pets=pets)
+
+@app.route("/add", methods=["GET", "POST"])
+def add_snack():
+    """Pet add form; handle adding."""
+
+    form = AddPetForm()
+
+    if not form.validate_on_submit():
+        name = form.name.data
+        species = form.species.data
+        photo_url = form.photo_url.data
+        age = form.age.data
+        notes = form.notes.data
+        # do stuff with data/insert to db
+
+        flash(f"Added {name} at {price}")
+        return redirect("/add")
+        #TODO: create flash message handling
+
+    else:
+        return render_template(
+            "_add_form.html", form=form)
