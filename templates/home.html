@@ -1,0 +1,9 @@
+{% block content %}
+<ul>
+{% for pet in pets %}
+<!--fix later-->
+<li><a href="/{{pet.id}}">{{pet.name}} {{pet.photo_url}} {{pet.available}}</a> </li>
+{% endfor %}
+</ul>
+
+{% endblock %}
