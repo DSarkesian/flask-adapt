@@ -9,7 +9,7 @@ class AddPetForm(FlaskForm):
 
     name = StringField("Pet Name")
     species = StringField("Species",
-         validators= [InputRequired(), AnyOf(["dog","cat","porcupine"])])
+        validators= [InputRequired(), AnyOf(["dog","cat","porcupine"])])
     photo_url = StringField("Photo URL",
         validators=[Optional(), URL()])
     age = StringField("Age",

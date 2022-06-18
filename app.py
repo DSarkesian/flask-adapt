@@ -32,7 +32,7 @@ def homepage():
 
 @app.route("/add", methods=["GET", "POST"])
 def add_pet():
-    """Pet add form; handle adding."""
+    """show pet add form, and handle adding."""
 
     form = AddPetForm()
 
@@ -43,20 +43,20 @@ def add_pet():
         age = form.age.data
         notes = form.notes.data
 
-        pet = Pet(name=name, species=species, photo_url=photo_url, age=age, notes=notes)
+        pet = Pet(name=name,
+        species=species,
+        photo_url=photo_url, age=age, notes=notes)
         db.session.add(pet)
         db.session.commit()
 
-        # flash(f"Added {name} at {price}")
         return redirect("/")
-        #TODO: create flash message handling
 
     else:
         return render_template(
             "add.html", form=form)
 
 @app.route("/<int:pet_id>", methods=["GET", "POST"])
-def pet_details(pet_id):
+def show_edit_pet_details(pet_id):
     """show pet details and edit form"""
 
     pet = Pet.query.get_or_404(pet_id)
@@ -77,5 +77,3 @@ def pet_details(pet_id):
     else:
         return render_template(
             "petInfo.html", pet=pet, form=form)
-
-
